@@ -877,8 +877,10 @@ func (self *Assembler) _asm_OP_i64(i *ir.Instr) {
 	}
 
 	self.Link("_i64_force_to_string{n}")
+	self.check_size(1)
 	self.add_char('"')
 	self.store_int(21, _F_i64toa, "MOVQ")
+	self.check_size(1)
 	self.add_char('"')
 	self.Sjmp("JMP", "_i64_to_string_end{n}")
 
@@ -925,8 +927,10 @@ func (self *Assembler) _asm_OP_u64(i *ir.Instr) {
 	}
 
 	self.Link("_u64_force_to_string{n}")
+	self.check_size(1)
 	self.add_char('"')
 	self.store_int(20, _F_u64toa, "MOVQ")
+	self.check_size(1)
 	self.add_char('"')
 	self.Sjmp("JMP", "_u64_to_string_end{n}")
 
